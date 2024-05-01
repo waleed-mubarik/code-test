@@ -173,6 +173,28 @@ class BaseRepository
 
     /**
      * @param integer $id
+     * @param string $relation
+     * @param array $data
+     * @return Model
+     */
+    public function updateRelated(int $id, string $relation, array $data): Model
+    {
+        $instance = $this->findOrFail($id); 
+        $relatedInstance = $instance->$relation;
+
+        // Check if the related instance exists before updating
+        if ($relatedInstance) {
+            $relatedInstance->update($data); 
+            return $relatedInstance;
+        }
+
+        // If related model doesn't exist, create it
+        $newRelatedInstance = $instance->$relation()->create($data);
+        return $newRelatedInstance;
+    }
+
+    /**
+     * @param integer $id
      * @return Model
      * @throws \Exception
      */

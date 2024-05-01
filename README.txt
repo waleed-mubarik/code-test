@@ -1,44 +1,37 @@
-Do at least ONE of the following tasks: refactor is mandatory. Write tests is optional, will be good bonus to see it. 
-Upload your results to a Github repo, for easier sharing and reviewing.
+# Code Refactoring Report
 
-Thank you and good luck!
+## Overview
+In this refactoring task, I focused on improving the code structure by implementing a Service-Repository pattern, introducing a response trait, and enhancing error handling in the controller. These changes are designed to improve code maintainability, readability, and adherence to best practices.
 
+## What I Did
+### Refactoring:
+- Introduced a **Service Layer** between the controller and repository to encapsulate business logic and separate concerns.
+- created a method in the BaseRepository to update related model
+- Implemented **try-catch blocks** in the controller methods to handle exceptions and errors more gracefully.
+- Created a **Response Trait** to standardize and format responses from the controller.
 
+### Methods Refactored
+I focused on refactoring two key methods:
+1. **distanceFeed**: This method previously contained complex logic with numerous conditionals and database interactions. I refactored it by segregating code into smaller, more manageable functions and moving database-related operations to the repository. Business logic is now handled by the service layer.
+2. **Store**: This method had significant complexity due to multiple if-else statements and extensive business logic within the controller. I reduced the complexity by using smaller helper methods, implemented a switch-case structure where appropriate, and separated data operations into the repository.
 
-Code to refactor
-=================
-1) app/Http/Controllers/BookingController.php
-2) app/Repository/BookingRepository.php
+## My Thoughts
+### Code Quality and Structure
+- The **BookingRepository** has over 20 methods, which violates best practices like PSR-12 that encourage smaller, modular repositories. This can lead to difficult maintenance and reduced clarity in the codebase.
+- A positive aspect of the existing codebase is the use of a **BaseRepository**, which contains frequently used methods and can be reused across multiple repositories. This approach enhances reusability and reduces redundancy.
 
-Code to write tests (optional)
-=====================
-3) App/Helpers/TeHelper.php method willExpireAt
-4) App/Repository/UserRepository.php, method createOrUpdate
+### Recommendations for Future Improvements
+- Consider breaking down large repositories into smaller, more focused repositories, each handling a specific domain or entity.
+- Continue to leverage the Service-Repository pattern to ensure a clean separation of concerns and improved testability.
+- Implement consistent error handling across the codebase to improve robustness and user experience.
 
+### Note on Additional Refactoring
+While the refactoring process addressed significant areas of improvement, there is still room for further refactoring to enhance code quality and maintainability. However, additional refactoring could require a significant investment of time and resources. This task focused on key areas to achieve noticeable improvements within the given timeframe.
 
-----------------------------
+## Conclusion
+The refactoring has resulted in a cleaner, more maintainable codebase with better separation of concerns. The new structure should make it easier for developers to understand and extend the code, while also reducing the risk of errors and simplifying testing.
 
-What I expect in your repo:
-
-X. A readme with:   Your thoughts about the code. What makes it amazing code. Or what makes it ok code. Or what makes it terrible code. How would you have done it. Thoughts on formatting, structure, logic.. The more details that you can provide about the code (what's terrible about it or/and what is good about it) the easier for us to assess your coding style, mentality etc
-
-And 
-
-Y.  Refactor it if you feel it needs refactoring. The more love you put into it. The easier for us to asses your thoughts, code principles etc
-
-
-IMPORTANT: Make two commits. First commit with original code. Second with your refactor so we can easily trace changes. 
-
-
-NB: you do not need to set up the code on local and make the web app run. It will not run as its not a complete web app. This is purely to assess you thoughts about code, formatting, logic etc
-
-
-===== So expected output is a GitHub link with either =====
-
-1. Readme described above (point X above) + refactored code 
-OR
-2. Readme described above (point X above) + refactored core + a unit test of the code that we have sent
-
-Thank you!
+Thank you for reviewing this report. Please let me know if you have any questions or require further details on the changes made during the refactoring.
 
 
+Note: ther are still alot of things to re-factor, but it will consumed alot of time I hope you understand.
